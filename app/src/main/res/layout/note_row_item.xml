@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:background="@drawable/background_edit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/updeteIcon"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="name"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/desc"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="description"
+            android:maxLines="5"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/updateIcon"
+        android:background="@drawable/baseline_edit_off_24"
+        android:layout_toLeftOf="@+id/deleteIcon" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/deleteIcon"
+        android:background="@drawable/baseline_folder_delete_24"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
