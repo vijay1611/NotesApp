@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notesapp.databinding.ActivityMainBinding
@@ -33,14 +35,11 @@ class MainActivity : AppCompatActivity(),ClickHandler {
         val viewModelFactory = NoteViewModelFactory(repository)
         vm = ViewModelProvider(this,viewModelFactory)[NoteViewModel::class.java]
         adapter = NoteAdapter(repository.getAllNotes(),this)
+        adapter.notifyDataSetChanged()
 
 
         vm.resultNoteModel.observe(this){
-            if(it.isEmpty()){
-                repository.getAllNotes()
-            }else{
                 adapter.setValue(it)
-            }
         }
 
         binding.rvMain.layoutManager = LinearLayoutManager(this)
@@ -59,11 +58,38 @@ class MainActivity : AppCompatActivity(),ClickHandler {
     }
 
     override fun deleteNote(noteModel: NoteModel) {
-        vm.deleteNote(noteModel)
+        alert(noteModel)
     }
 
     override fun updateHandler(noteModel: NoteModel) {
         vm.updateUser(noteModel)
     }
+
+    fun alert(noteModel: NoteModel) {
+        val builder = AlertDialog.Builder(this)
+
+        // Set title and message
+        builder.setTitle("Confirm Delete")
+            .setMessage("This is an alert message!")
+
+        // Set positive button and its OnClickListener
+        builder.setPositiveButton("Delete") { dialog, which ->
+            vm.deleteNote(noteModel)
+            Toast.makeText(this,"Deleted",Toast.LENGTH_SHORT).show()
+            //adapter.notifyDataSetChanged()
+        }
+
+        // Set negative button and its OnClickListener
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            return@setNegativeButton
+        }
+
+        // Create and show the AlertDialog
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+    }
+
+
 
 }

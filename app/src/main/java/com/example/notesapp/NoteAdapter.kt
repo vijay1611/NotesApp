@@ -49,7 +49,9 @@ class NoteAdapter(
         if(it !=null){
             note =it
         }
-        notifyDataSetChanged()
+            notifyDataSetChanged()
+
+
     }
 
     inner class UserViewModel(userview: View) : RecyclerView.ViewHolder(userview) {

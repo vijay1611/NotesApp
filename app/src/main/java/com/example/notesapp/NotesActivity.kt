@@ -43,6 +43,7 @@ class NotesActivity : AppCompatActivity() {
 //            vm.resultNoteModel.observe(this){it->
 //                vm.insertUser(NoteModel(name=binding.name.text.toString(), desc =  binding.desc.text.toString()))
             getData()
+         //   finish()
             }
 
 

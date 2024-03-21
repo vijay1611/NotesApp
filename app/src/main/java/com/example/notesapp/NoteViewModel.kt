@@ -15,9 +15,12 @@ class NoteViewModel( private val noteRepository: NoteRepository):ViewModel() {
     val resultNoteModel : LiveData<List<NoteModel>> = _resultNoteModel
 
     fun callAllUsers()  {
+        Log.e("888", "callAllUsers: called" )
         viewModelScope.launch {
            _resultNoteModel.postValue(noteRepository.getAllNotes().toMutableList())
+            Log.e("999inside", "callAllUsers: called" )
         }
+        Log.e("999", "callAllUsers: called" )
     }
 
     fun insertUser(note: NoteModel) {
